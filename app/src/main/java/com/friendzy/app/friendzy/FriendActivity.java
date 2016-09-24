@@ -55,7 +55,7 @@ public class FriendActivity extends AppCompatActivity {
         params.y = 0;
 
         params.flags = WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
-                        | WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED;
+                | WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED;
 
 
         wm.addView(chatContainer, params);
@@ -63,7 +63,7 @@ public class FriendActivity extends AppCompatActivity {
         addChatHead();
     }
 
-    public void addChatHead(){
+    public void addChatHead() {
         chatContainer.addChatHead("head0", false, true);
     }
 
