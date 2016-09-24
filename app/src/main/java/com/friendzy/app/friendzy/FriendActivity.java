@@ -1,6 +1,7 @@
 package com.friendzy.app.friendzy;
 
 import android.app.Activity;
+import android.graphics.PixelFormat;
 import android.support.v4.app.FragmentManager;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -15,6 +16,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.WindowManager;
 
 import com.flipkart.chatheads.ui.ChatHead;
 import com.flipkart.chatheads.ui.ChatHeadContainer;
@@ -26,17 +28,37 @@ import static android.R.attr.key;
 public class FriendActivity extends AppCompatActivity {
 
     private ChatHeadContainer chatContainer;
+    private WindowManager wm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_friend);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
+//        setContentView(R.layout.activity_friend);
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
+        setContentView(R.layout.content_friend);
         chatContainer = (ChatHeadContainer) findViewById(R.id.chat_container);
         chatContainer.setViewAdapter(new AppOverlay(this, getSupportFragmentManager()));
         chatContainer.setArrangement(MinimizedArrangement.class, null);
+
+
+        wm = (WindowManager) getSystemService(WINDOW_SERVICE);
+
+        WindowManager.LayoutParams params = new WindowManager.LayoutParams(
+                500,
+                200,
+                WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY,
+                WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH,
+                PixelFormat.TRANSLUCENT); //or set to transparent
+
+        params.x = 0;
+        params.y = 0;
+
+        params.flags = WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
+                        | WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED;
+
+
+        wm.addView(chatContainer, params);
 
         addChatHead();
     }

@@ -28,12 +28,14 @@ public class AppOverlay implements ChatHeadViewAdapter {
         return fragmentManager;
     }
 
+
     @Override
     public Fragment instantiateFragment(Object key, ChatHead chatHead) {
         // return the fragment which should be shown when the arrangment switches to maximized (on clicking a chat head)
         // you can use the key parameter to get back the object you passed in the addChatHead method.
         // this key should be used to decide which fragment to show.
-        return new Fragment();
+//        return MessagesFragment.newInstance(1);
+        return new BlankFragment();
     }
 
     @Override
