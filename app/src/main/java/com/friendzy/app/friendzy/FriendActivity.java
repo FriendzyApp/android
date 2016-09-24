@@ -37,6 +37,8 @@ public class FriendActivity extends AppCompatActivity {
         chatContainer = (ChatHeadContainer) findViewById(R.id.chat_container);
         chatContainer.setViewAdapter(new AppOverlay(this, getSupportFragmentManager()));
         chatContainer.setArrangement(MinimizedArrangement.class, null);
+
+        addChatHead();
     }
 
     public void addChatHead(){
