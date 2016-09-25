@@ -1,5 +1,6 @@
 package com.friendzy.app.friendzy;
 
+import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -57,6 +58,8 @@ public class FriendActivity extends AppCompatActivity {
 //        wm.addView(chatContainer, params);
 
         addChatHead();
+
+        startService(new Intent(this, FriendzyService.class));
 
     }
 
