@@ -28,7 +28,9 @@ public class FriendActivity extends AppCompatActivity {
         WindowManager.LayoutParams params = new WindowManager.LayoutParams(
                 500,
                 200,
-                WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY,
+                //WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY,
+                WindowManager.LayoutParams.TYPE_PHONE,
+                WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL |
                 WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH,
                 PixelFormat.TRANSPARENT); //or set to transparent
 //        params.alpha = 0.0f;
