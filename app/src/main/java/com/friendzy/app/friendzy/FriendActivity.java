@@ -43,6 +43,8 @@ public class FriendActivity extends AppCompatActivity {
                 | WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
                 | WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED;
 
+        params.flags = WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
+                | WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED;
 
 //        chatContainer = new ChatHeadContainer(getApplicationContext());
         chatContainer = (ChatHeadContainer) findViewById(R.id.chat_container);
