@@ -1,24 +1,12 @@
 package com.friendzy.app.friendzy;
 
-import android.app.Activity;
 import android.graphics.PixelFormat;
-import android.support.v4.app.FragmentManager;
-import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
+
+import android.view.Gravity;
 import android.view.WindowManager;
 
-import com.flipkart.chatheads.ui.ChatHead;
 import com.flipkart.chatheads.ui.ChatHeadContainer;
 import com.flipkart.chatheads.ui.ChatHeadViewAdapter;
 import com.flipkart.chatheads.ui.MinimizedArrangement;
@@ -33,14 +21,7 @@ public class FriendActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_friend);
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-        setContentView(R.layout.content_friend);
-        chatContainer = (ChatHeadContainer) findViewById(R.id.chat_container);
-        chatContainer.setViewAdapter(new AppOverlay(this, getSupportFragmentManager()));
-        chatContainer.setArrangement(MinimizedArrangement.class, null);
-
+        setContentView(R.layout.activity_friend);
 
         wm = (WindowManager) getSystemService(WINDOW_SERVICE);
 
@@ -49,22 +30,34 @@ public class FriendActivity extends AppCompatActivity {
                 200,
                 WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY,
                 WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH,
-                PixelFormat.TRANSLUCENT); //or set to transparent
-
+                PixelFormat.TRANSPARENT); //or set to transparent
+//        params.alpha = 0.0f;
         params.x = 0;
         params.y = 0;
+        params.gravity = Gravity.TOP | Gravity.RIGHT;
+        params.format = PixelFormat.TRANSLUCENT;
+        params.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
+                | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
+                | WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
+                | WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
+                | WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+                | WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED;
 
-        params.flags = WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
-                        | WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED;
 
+//        chatContainer = new ChatHeadContainer(getApplicationContext());
+        chatContainer = (ChatHeadContainer) findViewById(R.id.chat_container);
+        chatContainer.setViewAdapter(new AppOverlay(this, getSupportFragmentManager()));
+        chatContainer.setArrangement(MinimizedArrangement.class, null);
 
-        wm.addView(chatContainer, params);
+        //getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+//        wm.addView(chatContainer, params);
 
         addChatHead();
+
     }
 
     public void addChatHead(){
-        chatContainer.addChatHead("head0", false, true);
+        chatContainer.addChatHead("head0", true, true);
     }
 
     /*
